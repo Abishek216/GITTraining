@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MVCApp2.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (Session["role"].ToString() == "Admin")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieYearOfRelease)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieDirectorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Language.MoviesLanguageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Streaming.StreamingPlatformName)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieYearOfRelease)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieDirectorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language.MoviesLanguageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Streaming.StreamingPlatformName)
+        </td>
+
+        <td>
+            @if (Session["role"].ToString() == "Admin")
+            {
+
+                @Html.ActionLink("Edit ", "Edit", new { id = item.MovieId })
+                @Html.ActionLink("Details ", "Details", new { id = item.MovieId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.MovieId })
+
+            }
+            else if (Session["role"].ToString() == "Premium")
+            {
+                @Html.ActionLink("Details", "Details", new { id = item.MovieId })
+            }
+
+
+
+
+
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.MovieId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MovieId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MovieId })*@
+
+        </td>
+    </tr>
+    }
+
+</table>

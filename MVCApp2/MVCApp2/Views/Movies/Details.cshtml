@@ -1,0 +1,74 @@
+﻿@model MVCApp2.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieYearOfRelease)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieYearOfRelease)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieDirectorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieDirectorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Language.MoviesLanguageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Language.MoviesLanguageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Streaming.StreamingPlatformName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Streaming.StreamingPlatformName)
+        </dd>
+
+
+
+    </dl>
+</div>
+
+
+@if (Session["role"].ToString() == "Admin")
+{
+  <p>@Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) </p>
+}
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
